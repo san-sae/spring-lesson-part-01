@@ -26,50 +26,57 @@ repositories {
 
 dependencyManagement {
 	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.2"
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2025.0.3"
 	}
 }
 
 dependencies {
+    // spring-boot-starter-web 에는 tomcat이 들어있어, api 서버로 동작하기 위해 필요한 패키지 존재
+    // 해당 의존성이 없다면 java 프로젝트가 된다.(spring 프로젝트가 아닌)
 	implementation('org.springframework.boot:spring-boot-starter-web') {
+        // spring-boot-starter-web 내에 있는 tomcat 제거하고
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 	}
-	implementation 'org.springframework.boot:spring-boot-starter-undertow'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-undertow' // undertow로 갈아끼움
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // ORM 라이브러리 가져옴
+	implementation 'org.springframework.boot:spring-boot-starter-security' // 인증, 인가, 필터링 기능
+	implementation 'org.springframework.boot:spring-boot-starter-validation' // API request 검증
+	implementation 'org.springframework.boot:spring-boot-starter-actuator' // health 체크용
 
-	implementation 'org.springframework.session:spring-session-data-redis'
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-	implementation 'org.springframework.retry:spring-retry'
+//	implementation 'org.springframework.session:spring-session-data-redis'   // redis
+//	implementation 'org.springframework.boot:spring-boot-starter-data-redis' // redis
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign' // 외부 open API 호출을 비동기적으로
+	implementation 'org.springframework.retry:spring-retry' // 특정 메소드를 annotation 방식으로 재식작할 수 있도록 (fall x)
 
 	implementation 'org.springframework.boot:spring-boot-configuration-processor'
 
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 	implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
 
-	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta' // 현재 기준으로 공식 버전이 터져 jakarta 버전으로 사용
 
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
 	implementation 'org.hibernate.validator:hibernate-validator:7.0.2.Final'
 
-	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0"
+	implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0" // openapi 스펙을 문서화 (스웨거, 스칼라 모두 가능)
 
-	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-core' // DB 히스토리 (버전관리 툴)
 	implementation 'org.flywaydb:flyway-database-postgresql'
 
-	implementation 'org.jcodec:jcodec:0.2.5'
+	implementation 'org.jcodec:jcodec:0.2.5' //
 	implementation 'org.jcodec:jcodec-javase:0.2.5'
 
+    // 쿼리로 가져온 데이터(entity)를 그대로 response하면 안된다. 따라서 데이터 클래스로 변환하여 반환
+    // 이러한 변환 과정을 메소드 한 줄로 간단하게 만들어주는 추상화 라이브러리
+    // mapstruct가 변환해주는 라이브러리 중에 속도가 가장 빠름
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 
+    // 파싱해주는 라이브러리
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-	compileOnly 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok' // 자바의 구조적 한계로 인해 반복해서 작성해야 하는 보일러플레이트(반복) 코드를 annotation 하나로 자동 생성
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	runtimeOnly 'org.postgresql:postgresql'

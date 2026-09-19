@@ -1,0 +1,25 @@
+# 디렉토리 resources/ 내에 application-**.yml 형태로 환경 분리 가능(prod, dev, stage 등)
+## IntelliJ에서 해당 방식이 가능한 이유는
+## IntelliJ 상단 실행 버튼 바로 옆 "Current File" > Edit Configurations... 에서
+## Active profiles: dev 를 입력하면 자동으로 application-dev.yml을 설정파일로 연결해준다.
+
+# 그러나 이와 같이 애플리케이션 소스 코드 내부에 배포 환경별 설정 파일을 쪼개 관리하는 전통적 방식에도 단점 존재
+## 1. 환경이 바뀔 때마다 재빌드: 설정 파일이 JAR 파일 내부에 포함되어 DB PW 값 하나만 바뀌어도 재빌드 필요
+## 2. 클라우드 및 컨테이너(Docker, Kubernetes) 환경과 부조화
+# 해결 방법
+## 1. 시스템 환경 변수 사용
+## 2. 가상화/클라우드 주입: Docker, Kubernetes
+## 3. 중앙 집중식 설정 서버: Spring Cloud Config, AWS Parameter Store 등
+
+
+# 환경별 DB 연결
+## local: 개인 PC(원칙상 local DB) ← stage 또는 dev 데이터를 로컬로 덤프
+##         local에 dev DB 연결할 경우 ISSP로 인해 데이터 깨질 위험 있음
+## dev: dev 서버(spring) + DEV DB
+## stage: stage 서버 + 운영 DB
+##        stage는 QA는 끝났지만, 실제로 운영 DB에서 돌릴 수 있는지 검증하는 단계
+## prod: 운영서버 + 운영 DB
+##
+## 프론트엔드는 로컬 DB에 붙어야 한다.
+## DEV는 QA 역할까지 하는데, 프론트가 넣은 데이터로 인해 DB의 퀄이 떨어질 가능성 있다.
+## k8s 브랜치마다 개별 서버 환경 실행하여 해결

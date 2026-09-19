@@ -25,9 +25,9 @@
 
 각 주차는 `original`(시작 코드)과 `day-XX`(일차별 완성 코드) 브랜치로 구성되며, `extra`는 추가 학습 브랜치입니다.
 
-| 주차 | 시작 코드 | Day 01 | Day 02 | Day 03 | Day 04 / 추가 학습 |
-|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Week 01** | `week-01/original` | `week-01/day-01` | `week-01/day-02` | `week-01/day-03` | `week-01/day-04` |
+|     주차      |       시작 코드        |      Day 01      |      Day 02      |      Day 03      |     Day 04 / 추가 학습      |
+|:-----------:|:------------------:|:----------------:|:----------------:|:----------------:|:-----------------------:|
+| **Week 01** | `week-01/original` | `week-01/day-01` | `week-01/day-02` | `week-01/day-03` |    `week-01/day-04`     |
 | **Week 02** | `week-02/original` | `week-02/day-01` | `week-02/day-02` | `week-02/day-03` | `week-02/extra` (추가 학습) |
 
 ```bash
@@ -39,20 +39,20 @@ git checkout week-01/day-01
 
 ## 🛠 기술 스택
 
-| 분류 | 사용 기술 |
-|---|---|
-| **Language / Build** | Java 21, Gradle 8.14 |
-| **Framework** | Spring Boot 3.5, Spring Cloud 2023.0 |
-| **Web Server** | Undertow (Tomcat 대체) |
-| **Persistence** | Spring Data JPA, QueryDSL 5.0, Flyway |
-| **Database / Cache** | PostgreSQL, Redis (Spring Session) |
-| **Communication** | Spring Cloud OpenFeign, Spring Retry |
-| **Security** | Spring Security, JJWT 0.11 |
-| **Validation** | Spring Validation (Hibernate Validator) |
-| **Mapping** | MapStruct 1.5, Lombok |
-| **API Docs** | springdoc-openapi (Swagger UI) |
-| **Monitoring** | Spring Boot Actuator |
-| **Test** | JUnit 5, Spring Boot Test |
+| 분류                   | 사용 기술                                   |
+|----------------------|-----------------------------------------|
+| **Language / Build** | Java 21, Gradle 8.14                    |
+| **Framework**        | Spring Boot 3.5, Spring Cloud 2023.0    |
+| **Web Server**       | Undertow (Tomcat 대체)                    |
+| **Persistence**      | Spring Data JPA, QueryDSL 5.0, Flyway   |
+| **Database / Cache** | PostgreSQL, Redis (Spring Session)      |
+| **Communication**    | Spring Cloud OpenFeign, Spring Retry    |
+| **Security**         | Spring Security, JJWT 0.11              |
+| **Validation**       | Spring Validation (Hibernate Validator) |
+| **Mapping**          | MapStruct 1.5, Lombok                   |
+| **API Docs**         | springdoc-openapi (Swagger UI)          |
+| **Monitoring**       | Spring Boot Actuator                    |
+| **Test**             | JUnit 5, Spring Boot Test               |
 
 ---
 
@@ -114,6 +114,8 @@ cd sparta-msa-lesson-part-01
 </div>
 
 ## 개인 학습 기록
+
 - 1주차 (week-01)
     - `week-01/day-01-spring-main-desc`: 스프링 부트 프로젝트 구조 이해 및 main() 메서드 분석
-    
+    - `week-01/day-01-basic-setting`: DB, Swagger, global/ 디렉토리 세팅
+ 

@@ -2,6 +2,13 @@
  * 엄밀히 말하면 스프링 프레임워크 프로젝트 아니다.
  * 자바 배포시에는 코드 자체가 올라가는 것이 아니라 .jar 파일이 올라간다.
  * */
+/* 웹 서버(Tomcat) vs 웹 애플리케이션 (Tomcat + Spring)
+ * 두 개념을 나눈다는 것은 Tomcat을 갈아끼울 수 있음을 의미 → undertow
+ *
+ * Tomcat의 경우 엔드포인트까지 읽어서 라우팅 → 복잡한 라우팅
+ * 이때 중간 브릿지 역할을 하는 것이 Servlet (라우팅 등을 관리하는 통신 리소스)
+ * ex. API 호출 → 톰캣 → Servlet이 /member 라는 엔드포인트 처리 → Spring(MemberController.class)
+ * */
 
 /* 외부에서 접근 시에 경로 */
 package com.sparta.msa.lesson;
