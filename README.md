@@ -112,3 +112,8 @@ cd sparta-msa-lesson-part-01
 **Happy Coding! 🎉**
 
 </div>
+
+## 개인 학습 기록
+- 1주차 (week-01)
+    - `week-01/day-01-spring-main-desc`: 스프링 부트 프로젝트 구조 이해 및 main() 메서드 분석
+    
